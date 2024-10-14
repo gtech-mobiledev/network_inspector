@@ -7,6 +7,7 @@ import 'package:http/http.dart';
 import '../../domain/entities/http_request.dart';
 import '../../domain/entities/http_response.dart';
 import '../../network_inspector.dart';
+import '../extensions/curl_extension.dart';
 import 'byte_util.dart';
 import 'json_util.dart';
 import 'url_util.dart';
@@ -206,6 +207,7 @@ class HttpInterceptor extends BaseClient {
       createdAt: DateTime.now().millisecondsSinceEpoch,
       requestSize: _byteUtil.stringToBytes(request.body.toString()),
       requestHashCode: request.hashCode,
+      cUrl: request.toCurlCommand(),
     );
     await networkInspector!.writeHttpRequestLog(payload);
   }
