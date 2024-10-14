@@ -87,10 +87,7 @@ class ActivityDetailPage extends StatelessWidget {
           decoration: BoxDecoration(
             color: (Theme.of(context).brightness == Brightness.dark)
                 ? Theme.of(context).colorScheme.surface
-                : Theme.of(context)
-                    .colorScheme
-                    .primaryContainer
-                    .withOpacity(0.25),
+                : Colors.black12,
             borderRadius: BorderRadius.circular(8),
           ),
           child: Column(
