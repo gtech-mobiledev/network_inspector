@@ -124,10 +124,6 @@ class HttpInterceptor extends BaseClient {
     var processedUrl = _urlUtil.isUrlNeedToOveride(baseUrl, url);
     var request = Request(method, processedUrl);
 
-    if (logIsAllowed) {
-      saveRequest(request);
-    }
-
     if (processedHeader != null) request.headers.addAll(processedHeader);
     if (encoding != null) request.encoding = encoding;
     if (body != null) {
@@ -182,11 +178,21 @@ class HttpInterceptor extends BaseClient {
   }
 
   Future<void> logResponse(Response response) async {
-    var logTemplate = '\n[Response header] ${response.headers.toString()}'
-        '\n[Response body] ${_jsonUtil.encodeRawJson(response.body)}'
-        '\n[Response code] ${response.statusCode}'
-        '\n[Response message] ${response.reasonPhrase}';
-    developer.log(logTemplate);
+    if (response.headers["content-type"]
+        .toString()
+        .contains('application/json')) {
+      var logTemplate = '\n[Response header] ${response.headers.toString()}'
+          '\n[Response body] ${_jsonUtil.encodeRawJson(response.body)}'
+          '\n[Response code] ${response.statusCode}'
+          '\n[Response message] ${response.reasonPhrase}';
+      developer.log(logTemplate);
+    } else {
+      var logTemplate = '\n[Response header] ${response.headers.toString()}'
+          '\n[Response body] ${response.bodyBytes.toString()}'
+          '\n[Response code] ${response.statusCode}'
+          '\n[Response message] ${response.reasonPhrase}';
+      developer.log(logTemplate);
+    }
   }
 
   Future<void> saveRequest(Request request) async {
@@ -205,16 +211,31 @@ class HttpInterceptor extends BaseClient {
   }
 
   Future<void> saveResponse(Response response, int requestHashCode) async {
-    var payload = HttpResponse(
-      createdAt: DateTime.now().millisecondsSinceEpoch,
-      responseHeader: _jsonUtil.encodeRawJson(response.headers).toString(),
-      responseBody: _jsonUtil.encodeRawJson(response.body).toString(),
-      responseStatusCode: response.statusCode,
-      responseStatusMessage: response.reasonPhrase.toString(),
-      responseSize: _byteUtil.stringToBytes(response.body.toString()),
-      requestHashCode: requestHashCode,
-    );
-    await networkInspector!.writeHttpResponseLog(payload);
+    if (response.headers["content-type"]
+        .toString()
+        .contains('application/json')) {
+      var payload = HttpResponse(
+        createdAt: DateTime.now().millisecondsSinceEpoch,
+        responseHeader: _jsonUtil.encodeRawJson(response.headers).toString(),
+        responseBody: _jsonUtil.encodeRawJson(response.body).toString(),
+        responseStatusCode: response.statusCode,
+        responseStatusMessage: response.reasonPhrase.toString(),
+        responseSize: _byteUtil.stringToBytes(response.body),
+        requestHashCode: requestHashCode,
+      );
+      await networkInspector!.writeHttpResponseLog(payload);
+    } else {
+      var payload = HttpResponse(
+        createdAt: DateTime.now().millisecondsSinceEpoch,
+        responseHeader: _jsonUtil.encodeRawJson(response.headers).toString(),
+        responseBody: response.bodyBytes.toString(),
+        responseStatusCode: response.statusCode,
+        responseStatusMessage: response.reasonPhrase.toString(),
+        responseSize: response.bodyBytes.length,
+        requestHashCode: requestHashCode,
+      );
+      await networkInspector!.writeHttpResponseLog(payload);
+    }
   }
 
   Future<void> finishActivity(
