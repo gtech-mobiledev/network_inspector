@@ -207,7 +207,7 @@ class HttpInterceptor extends BaseClient {
       createdAt: DateTime.now().millisecondsSinceEpoch,
       requestSize: _byteUtil.stringToBytes(request.body.toString()),
       requestHashCode: request.hashCode,
-      cUrl: request.toCurlCommand(),
+      curl: request.toCurlCommand(),
     );
     await networkInspector!.writeHttpRequestLog(payload);
   }

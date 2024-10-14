@@ -98,17 +98,17 @@ class HttpRequestPage extends StatelessWidget {
               },
             ),
             ContentContainer(
-              title: 'cUrl',
-              content: request?.requestBody,
+              title: 'cURL',
+              content: request?.curl,
               onCopyTap: () {
                 provider.copyActivityData(
-                  request?.cUrl ?? NetworkInspectorValue.defaultEmptyString,
+                  request?.curl ?? NetworkInspectorValue.defaultEmptyString,
                 );
               },
               onShareTap: () {
                 provider.shareActivityData(
-                  'cUrl',
-                  request?.cUrl ?? NetworkInspectorValue.defaultEmptyString,
+                  'cURL',
+                  request?.curl ?? NetworkInspectorValue.defaultEmptyString,
                 );
               },
             ),

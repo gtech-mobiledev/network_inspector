@@ -1,6 +1,6 @@
 import 'package:http/http.dart' as http;
 
-extension CurlCommand on http.BaseRequest {
+extension CurlCommand on http.Request {
   /// Converts the HTTP request to a cURL command
   String toCurlCommand() {
     final curlCmd = StringBuffer();
@@ -14,11 +14,9 @@ extension CurlCommand on http.BaseRequest {
     });
 
     // Add body for POST, PUT, PATCH requests
-    if (this is http.Request) {
-      final request = this as http.Request;
-      if (request.body.isNotEmpty) {
-        curlCmd.write(' -d \'${request.body}\'');
-      }
+    final request = this;
+    if (request.body.isNotEmpty) {
+      curlCmd.write(' -d \'${request.body}\'');
     }
 
     return curlCmd.toString();

@@ -52,7 +52,7 @@
             "attribute": null
         },
         {
-            "fields": "cUrl",
+            "fields": "curl",
             "type":"text",
             "attribute": null
         }

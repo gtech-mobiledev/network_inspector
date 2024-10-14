@@ -10,7 +10,7 @@ class HttpRequest {
   final String? requestBody;
   final int? requestSize;
   final int? requestHashCode;
-  final String? cUrl;
+  final String? curl;
 
   HttpRequest({
     this.id,
@@ -23,6 +23,6 @@ class HttpRequest {
     this.requestBody,
     this.requestSize,
     this.requestHashCode,
-    this.cUrl,
+    this.curl,
   });
 }
