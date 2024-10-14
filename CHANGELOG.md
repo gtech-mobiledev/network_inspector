@@ -1,3 +1,7 @@
+## 1.2.0 - 14 Oct 2024
+* Remove Dio
+* Added cUrl function in http request
+
 ## 1.1.1 - 1 July 2024
 * Fix HTTP request log being error and throwing into body
 * Added a flag to enable/disable console logging
