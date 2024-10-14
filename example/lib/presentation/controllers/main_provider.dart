@@ -1,7 +1,5 @@
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart';
-import 'package:network_inspector/common/utils/dio_interceptor.dart';
 import 'package:network_inspector/common/utils/http_interceptor.dart';
 import 'package:network_inspector/network_inspector.dart';
 
@@ -22,31 +20,6 @@ class MainProvider extends ChangeNotifier {
   Future<void> injectDependencies() async {
     notificationHelper = NotificationHelper();
     networkInspector = NetworkInspector();
-  }
-
-  Dio get dioClient {
-    return Dio(
-      BaseOptions(
-        baseUrl: 'http://10.10.43.100:8080/',
-        connectTimeout: const Duration(seconds: 10),
-        headers: {
-          'Content-type': 'application/json',
-          'Accept': 'application/json',
-          'Authorization': 'Bearer i109gh23j9u1h3811io2n391'
-        },
-      ),
-    )..interceptors.add(
-        DioInterceptor(
-          logIsAllowed: true,
-          networkInspector: networkInspector,
-          onHttpFinish: (hashCode, title, message) {
-            notifyActivity(
-              title: title,
-              message: message,
-            );
-          },
-        ),
-      );
   }
 
   HttpInterceptor get httpClient {

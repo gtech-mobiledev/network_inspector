@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import 'dio_page.dart';
 import 'http_page.dart';
 import 'vanilla_page.dart';
 
@@ -33,16 +32,6 @@ class MainPage extends StatelessWidget {
             ),
           ),
           const Divider(height: 0),
-          ListTile(
-            title: const Text('Dio'),
-            subtitle: Text(
-              'Create http activity with Dio package',
-              style: Theme.of(context).textTheme.bodySmall,
-            ),
-            onTap: () {
-              Navigator.pushNamed(context, DioPage.routeName);
-            },
-          ),
           ListTile(
             title: const Text('Http'),
             subtitle: Text(
