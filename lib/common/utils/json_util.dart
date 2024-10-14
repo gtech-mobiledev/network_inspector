@@ -86,6 +86,7 @@ class JsonUtil {
         'response_size': '${response?.responseSize ?? 0} kb',
         'created_at': response?.createdAt,
       },
+      'curl': request?.curl,
     };
     return tryEncodeJson(jsonOutput);
   }
