@@ -66,25 +66,27 @@ class ActivityPage extends StatelessWidget {
   }
 
   Widget buildBody(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.all(8),
-      child: Consumer<ActivityProvider>(
-        builder: (context, provider, child) {
-          final result = provider.fetchedActivity;
-          switch (provider.fetchedActivity.status) {
-            case Status.loading:
-              return loadingWidget(context);
-            case Status.success:
-              return successBody(
-                context,
-                result.data,
-              );
-            case Status.error:
-              return errorMessage(context, result.message);
-            default:
-              return const SizedBox.shrink();
-          }
-        },
+    return SafeArea(
+      child: Container(
+        padding: const EdgeInsets.all(8),
+        child: Consumer<ActivityProvider>(
+          builder: (context, provider, child) {
+            final result = provider.fetchedActivity;
+            switch (provider.fetchedActivity.status) {
+              case Status.loading:
+                return loadingWidget(context);
+              case Status.success:
+                return successBody(
+                  context,
+                  result.data,
+                );
+              case Status.error:
+                return errorMessage(context, result.message);
+              default:
+                return const SizedBox.shrink();
+            }
+          },
+        ),
       ),
     );
   }
