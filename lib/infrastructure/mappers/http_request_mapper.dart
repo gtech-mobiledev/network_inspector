@@ -15,6 +15,7 @@ class HttpRequestMapper {
       requestBody: model.requestBody,
       requestSize: model.requestSize,
       requestHashCode: model.requestHashCode,
+      curl: model.curl,
     );
   }
 
@@ -30,6 +31,7 @@ class HttpRequestMapper {
       requestBody: entity.requestBody,
       requestSize: entity.requestSize,
       requestHashCode: entity.requestHashCode,
+      curl: entity.curl,
     );
   }
 }
