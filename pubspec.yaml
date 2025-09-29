@@ -1,6 +1,6 @@
 name: optimus_network_inspector
 description: Http inspector / logger for Http package. This package would allow you to log every Http request, response, and error from Http.
-version: 1.0.0
+version: 1.0.1
 homepage: https://gtech.digital
 
 environment:
