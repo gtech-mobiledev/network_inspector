@@ -8,9 +8,7 @@ import '../../common/notification_helper.dart';
 class MainProvider extends ChangeNotifier {
   final BuildContext context;
 
-  MainProvider({
-    required this.context,
-  }) {
+  MainProvider({required this.context}) {
     injectDependencies();
   }
 
@@ -31,15 +29,12 @@ class MainProvider extends ChangeNotifier {
       baseUrl: Uri.parse('http://10.10.43.100:8080/'),
       networkInspector: networkInspector,
       onHttpFinish: (hashCode, title, message) {
-        notifyActivity(
-          title: title,
-          message: message,
-        );
+        notifyActivity(title: title, message: message);
       },
       headers: {
         'Content-type': 'application/json',
         'Accept': 'application/json',
-        'Authorization': 'Bearer WEKLSSS'
+        'Authorization': 'Bearer WEKLSSS',
       },
     );
     return interceptor;

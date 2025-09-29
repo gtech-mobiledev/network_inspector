@@ -5,10 +5,7 @@ abstract class ChangeNotifierPage<T extends ChangeNotifier>
     extends StatelessWidget {
   final Widget? child;
 
-  const ChangeNotifierPage({
-    this.child,
-    super.key,
-  });
+  const ChangeNotifierPage({this.child, super.key});
 
   @override
   Widget build(BuildContext context) {

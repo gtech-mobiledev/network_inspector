@@ -2,10 +2,7 @@ class CreatePlanetRequestModel {
   final String name;
   final String description;
 
-  CreatePlanetRequestModel({
-    required this.name,
-    required this.description,
-  });
+  CreatePlanetRequestModel({required this.name, required this.description});
 
   factory CreatePlanetRequestModel.fromJson(Map<String, dynamic> json) =>
       CreatePlanetRequestModel(

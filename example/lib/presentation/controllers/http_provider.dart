@@ -12,9 +12,7 @@ import 'main_provider.dart';
 
 class HttpProvider extends ChangeNotifier {
   final BuildContext context;
-  HttpProvider({
-    required this.context,
-  }) {
+  HttpProvider({required this.context}) {
     injectDependencies();
   }
   PlanetDatasource? planetDatasource;
@@ -22,10 +20,7 @@ class HttpProvider extends ChangeNotifier {
   FetchPlanet? fetchPlanet;
   CreatePlanet? createPlanet;
   MainProvider get mainProvider {
-    return Provider.of<MainProvider>(
-      context,
-      listen: false,
-    );
+    return Provider.of<MainProvider>(context, listen: false);
   }
 
   Future<void> injectDependencies() async {
@@ -35,12 +30,8 @@ class HttpProvider extends ChangeNotifier {
     planetRepository = PlanetRepositoryImpl(
       planetDatasource: planetDatasource!,
     );
-    fetchPlanet = FetchPlanet(
-      planetRepository: planetRepository!,
-    );
-    createPlanet = CreatePlanet(
-      planetRepository: planetRepository!,
-    );
+    fetchPlanet = FetchPlanet(planetRepository: planetRepository!);
+    createPlanet = CreatePlanet(planetRepository: planetRepository!);
   }
 
   Future<List<Planet>?> retrievePlanet() async {

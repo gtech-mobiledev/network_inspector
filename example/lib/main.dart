@@ -15,28 +15,20 @@ void main() {
 }
 
 class ExampleApp extends StatelessWidget {
-  const ExampleApp({
-    super.key,
-  });
+  const ExampleApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider<MainProvider>(
-      create: (context) => MainProvider(
-        context: context,
-      ),
+      create: (context) => MainProvider(context: context),
       builder: (context, child) => MaterialApp(
         title: 'Network inspector',
         theme: ThemeData(
           brightness: Brightness.light,
-          colorScheme: ColorScheme.fromSeed(
-            seedColor: Colors.deepPurple,
-          ),
+          colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
           elevatedButtonTheme: ElevatedButtonThemeData(
             style: ButtonStyle(
-              backgroundColor: WidgetStateProperty.all(
-                Colors.deepPurple,
-              ),
+              backgroundColor: WidgetStateProperty.all(Colors.deepPurple),
             ),
           ),
         ),

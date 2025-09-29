@@ -11,9 +11,7 @@ class HttpPage extends ChangeNotifierPage<HttpProvider> {
   @override
   Widget buildWidget(BuildContext context, Widget? child) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Http inspection'),
-      ),
+      appBar: AppBar(title: const Text('Http inspection')),
       body: ListView(
         children: [
           Padding(
@@ -21,10 +19,7 @@ class HttpPage extends ChangeNotifierPage<HttpProvider> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  'Planet',
-                  style: Theme.of(context).textTheme.titleLarge,
-                ),
+                Text('Planet', style: Theme.of(context).textTheme.titleLarge),
                 Text(
                   'Create http activity using planet data',
                   style: Theme.of(context).textTheme.bodyMedium,
@@ -50,10 +45,9 @@ class HttpPage extends ChangeNotifierPage<HttpProvider> {
               style: Theme.of(context).textTheme.bodySmall,
             ),
             onTap: () {
-              provider(context).createPlanet!.execute(
-                    name: 'Earth',
-                    description: 'Our Home',
-                  );
+              provider(
+                context,
+              ).createPlanet!.execute(name: 'Earth', description: 'Our Home');
             },
           ),
           ListTile(

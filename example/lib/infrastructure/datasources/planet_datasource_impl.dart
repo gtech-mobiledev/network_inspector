@@ -10,9 +10,7 @@ import 'planet_datasource.dart';
 
 class PlanetDatasourceImpl implements PlanetDatasource {
   final dynamic datasourceClient;
-  PlanetDatasourceImpl({
-    required this.datasourceClient,
-  });
+  PlanetDatasourceImpl({required this.datasourceClient});
 
   final _urlUtil = UrlUtil();
 
@@ -30,9 +28,7 @@ class PlanetDatasourceImpl implements PlanetDatasource {
       );
 
       return (response.body != '')
-          ? FetchPlanetResponseModel.fromJson(
-              jsonDecode(response.body),
-            )
+          ? FetchPlanetResponseModel.fromJson(jsonDecode(response.body))
           : null;
     } else {
       throw UnimplementedError();
@@ -44,19 +40,14 @@ class PlanetDatasourceImpl implements PlanetDatasource {
     required String name,
     required String description,
   }) async {
-    var request = {
-      'name': name,
-      'description': description,
-    };
+    var request = {'name': name, 'description': description};
     if (datasourceClient is Client) {
       var response = await (datasourceClient as Client).post(
         Uri.parse(Endpoint.planet),
         body: jsonEncode(request),
       );
       return (response.body != '')
-          ? BaseResponseModel.fromJson(
-              jsonDecode(response.body),
-            )
+          ? BaseResponseModel.fromJson(jsonDecode(response.body))
           : null;
     } else {
       throw UnimplementedError();

@@ -46,9 +46,7 @@ class NotificationHelper {
       if (payload == 'networkInspector') {
         await Navigator.push(
           context,
-          MaterialPageRoute<void>(
-            builder: (context) => ActivityPage(),
-          ),
+          MaterialPageRoute<void>(builder: (context) => ActivityPage()),
         );
       }
     }
@@ -63,7 +61,8 @@ class NotificationHelper {
     const androidNotificationDetail = AndroidNotificationDetails(
       'network-inspector-channel',
       'Channel for example',
-      channelDescription: 'This channel created for testing network inspector'
+      channelDescription:
+          'This channel created for testing network inspector'
           'package',
       importance: Importance.max,
       priority: Priority.high,

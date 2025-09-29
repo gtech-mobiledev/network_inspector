@@ -4,18 +4,13 @@ class FetchPlanetResponseModel {
   final String message;
   final List<PlanetModel> data;
 
-  FetchPlanetResponseModel({
-    required this.message,
-    required this.data,
-  });
+  FetchPlanetResponseModel({required this.message, required this.data});
 
   factory FetchPlanetResponseModel.fromJson(Map<String, dynamic> json) =>
       FetchPlanetResponseModel(
         message: json['message'],
         data: List<PlanetModel>.from(
-          json['data'].map(
-            (json) => PlanetModel.fromJson(json),
-          ),
+          json['data'].map((json) => PlanetModel.fromJson(json)),
         ),
       );
 

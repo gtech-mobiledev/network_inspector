@@ -10,13 +10,9 @@ class VanillaPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
-      create: (context) => VanillaProvider(
-        context: context,
-      ),
+      create: (context) => VanillaProvider(context: context),
       builder: (context, child) => Scaffold(
-        appBar: AppBar(
-          title: const Text('Vanilla http inspection'),
-        ),
+        appBar: AppBar(title: const Text('Vanilla http inspection')),
         body: ListView(
           children: [
             Padding(
@@ -24,10 +20,7 @@ class VanillaPage extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
-                    'Planet',
-                    style: Theme.of(context).textTheme.titleLarge,
-                  ),
+                  Text('Planet', style: Theme.of(context).textTheme.titleLarge),
                   Text(
                     'Create http activity using planet data',
                     style: Theme.of(context).textTheme.bodyMedium,

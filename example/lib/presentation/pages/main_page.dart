@@ -10,9 +10,7 @@ class MainPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Network Inspector'),
-      ),
+      appBar: AppBar(title: const Text('Network Inspector')),
       body: ListView(
         children: [
           Padding(
@@ -20,10 +18,7 @@ class MainPage extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  'Json',
-                  style: Theme.of(context).textTheme.titleLarge,
-                ),
+                Text('Json', style: Theme.of(context).textTheme.titleLarge),
                 Text(
                   'Create Http Activity with Json payload',
                   style: Theme.of(context).textTheme.bodyMedium,
