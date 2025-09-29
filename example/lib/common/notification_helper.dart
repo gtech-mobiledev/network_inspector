@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
-import 'package:network_inspector/network_inspector.dart';
+import 'package:optimus_network_inspector/network_inspector.dart';
 
 import 'navigation_service.dart';
 
@@ -8,7 +8,7 @@ class NotificationHelper {
   static final localNotification = FlutterLocalNotificationsPlugin();
 
   static AndroidInitializationSettings? get androidInitSetting {
-    return const AndroidInitializationSettings('meruya_logo');
+    return const AndroidInitializationSettings('@mipmap/ic_launcher');
   }
 
   static DarwinInitializationSettings? get iosInitSetting {

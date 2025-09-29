@@ -71,7 +71,7 @@ class HttpRequestModel {
 
   static Future<Map<String, dynamic>> get migration async {
     final stringJson = await rootBundle.loadString(
-      'packages/network_inspector/assets/json/http_request.json',
+      'packages/optimus_network_inspector/assets/json/http_request.json',
     );
     final migrateScript = json.decode(stringJson);
     return migrateScript;

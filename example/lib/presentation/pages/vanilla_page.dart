@@ -5,7 +5,7 @@ import '../controllers/vanilla_provider.dart';
 
 class VanillaPage extends StatelessWidget {
   static const String routeName = '/vanilla-page';
-  const VanillaPage({Key? key}) : super(key: key);
+  const VanillaPage({super.key});
 
   @override
   Widget build(BuildContext context) {

@@ -5,7 +5,7 @@ import 'vanilla_page.dart';
 
 class MainPage extends StatelessWidget {
   static const String routeName = '/main-page';
-  const MainPage({Key? key}) : super(key: key);
+  const MainPage({super.key});
 
   @override
   Widget build(BuildContext context) {

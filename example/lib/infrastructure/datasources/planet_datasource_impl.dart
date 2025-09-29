@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:http/http.dart';
-import 'package:network_inspector/common/utils/url_util.dart';
+import 'package:optimus_network_inspector/common/utils/url_util.dart';
 
 import '../../const/endpoint.dart';
 import '../models/base_response_model.dart';

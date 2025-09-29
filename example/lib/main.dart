@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:network_inspector/network_inspector.dart';
+import 'package:optimus_network_inspector/network_inspector.dart';
 import 'package:provider/provider.dart';
 
 import 'common/navigation_service.dart';
@@ -16,8 +16,8 @@ void main() {
 
 class ExampleApp extends StatelessWidget {
   const ExampleApp({
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -45,7 +45,7 @@ class ExampleApp extends StatelessWidget {
           elevatedButtonTheme: ElevatedButtonThemeData(
             style: ButtonStyle(
               backgroundColor: WidgetStateProperty.all(
-                Colors.black.withOpacity(0.3),
+                Colors.black.withValues(alpha: 0.3),
               ),
             ),
           ),

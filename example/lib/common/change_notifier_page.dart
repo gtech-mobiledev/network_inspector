@@ -7,8 +7,8 @@ abstract class ChangeNotifierPage<T extends ChangeNotifier>
 
   const ChangeNotifierPage({
     this.child,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {

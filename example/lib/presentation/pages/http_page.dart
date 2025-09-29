@@ -6,7 +6,7 @@ import '../controllers/http_provider.dart';
 class HttpPage extends ChangeNotifierPage<HttpProvider> {
   static const String routeName = '/http-page';
 
-  const HttpPage({Key? key}) : super(key: key);
+  const HttpPage({super.key});
 
   @override
   Widget buildWidget(BuildContext context, Widget? child) {
