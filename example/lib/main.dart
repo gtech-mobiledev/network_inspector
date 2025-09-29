@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:optimus_network_inspector/network_inspector.dart';
+import 'package:optimus_network_inspector/optimus_network_inspector.dart';
 import 'package:provider/provider.dart';
 
 import 'common/navigation_service.dart';
