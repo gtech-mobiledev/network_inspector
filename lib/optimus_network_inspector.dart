@@ -13,7 +13,6 @@ import 'infrastructure/datasources/log_datasource.dart';
 import 'infrastructure/datasources/log_datasource_impl.dart';
 import 'infrastructure/repositories/log_repository_impl.dart';
 
-
 /// Export
 export 'presentation/pages/activity_page.dart';
 
