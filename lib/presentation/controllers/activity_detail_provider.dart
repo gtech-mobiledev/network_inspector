@@ -39,10 +39,10 @@ class ActivityDetailProvider extends ChangeNotifier {
   }
 
   Future<void> shareHttpActivity(String content) async {
-    Share.share(
-      content,
+    SharePlus.instance.share(ShareParams(
+      text: content,
       subject: 'Http Activity ${httpActivity.request?.path}',
-    );
+    ));
   }
 
   Future<void> copyActivityData(String content) async {
@@ -53,10 +53,10 @@ class ActivityDetailProvider extends ChangeNotifier {
   }
 
   Future<void> shareActivityData(String title, String content) async {
-    Share.share(
-      content,
+    SharePlus.instance.share(ShareParams(
+      text: content,
       subject: '$title : ${httpActivity.request?.path}',
-    );
+    ));
   }
 
   Future<void> buildJson(

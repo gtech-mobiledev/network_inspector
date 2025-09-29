@@ -1,5 +1,11 @@
+# optimus_network_inspector
+
+A Flutter package for inspecting and debugging network requests.
+
+Unlike the original network_inspector, this fork removes Dio client support and is designed exclusively for the http package.
+
 Easy to use, http client class debugger & logger for multiple http client.
-This package contains a set of high-level functions and classes that make it easy to log / debug HTTP activities on the fly. It's also depend on [Dio](https://pub.dev/packages/dio) and [Http](https://pub.dev/packages/http) package.
+This package contains a set of high-level functions and classes that make it easy to log / debug HTTP activities on the fly. It's also depend on [Http](https://pub.dev/packages/http) package.
 
 <table>
   <tr>
@@ -21,33 +27,19 @@ This package contains a set of high-level functions and classes that make it eas
 
 https://user-images.githubusercontent.com/27884014/156951569-539bf1b4-246a-446f-a01e-7abdfae2d28b.mp4
 
-# Material 3 & Dark mode support 🆕
-Now you can use your favorite material 3 theme and dark mode, starting from version `1.0.4`
-<table>
-  <tr>
-    <td>
-        <img src="https://user-images.githubusercontent.com/27884014/215930054-fb788a1f-6cbe-47c8-8422-87fd9280c045.png" height="250px">
-    </td>
-    <td>
-        <img src="https://user-images.githubusercontent.com/27884014/215930065-7fbcd2fb-e886-4650-9b6e-921f495fa637.png" height="250px">
-    </td>
-    <td>
-        <img src="https://user-images.githubusercontent.com/27884014/215930067-62e9bcb9-28a8-442d-b2b4-90c003a17334.png" height="250px">
-    </td>
-    <td>
-        <img src="https://user-images.githubusercontent.com/27884014/215930075-6a6ea153-3db4-471c-86ca-31724e2e78c5.png" height="250px">
-    </td>
-  </tr>
-</table>
+## ✨ Features
+- Intercept and log HTTP requests and responses (using the `http` package).
+- View headers, body, and response times.
+- Lightweight implementation without Dio dependencies.
 
-# Get Started
+## Get Started
 add dependency
 ```yaml
 dependencies:
-  network_inspector: ^1.0.0
+  optimus_network_inspector: ^1.0.0
 ```
 
-# Initialize
+## Initialize
 Initialize network inspector, call initialize method to init the local database `sqlite`. You can use `WidgetsFlutterBinding.ensureInitialized();` to makesure widget flutter binding initialized before initialize network inspector.
 ```dart
 void main() {
@@ -57,10 +49,10 @@ void main() {
 }
 ```
 
-# Http Users
-1. Add interceptor class `HttpInterceptor` for dio client.
+## Http Users
+1. Add interceptor class `HttpInterceptor` for http client.
 2. Initialize `Client` to client class, then use `client` on the `HttpInterceptor` constructor
-3. Create another Network Inspector class to used on the `DioInterceptor` constructor.
+3. Create another Network Inspector class to used on the `HttpInterceptor` constructor.
 4. Use `onHttpFinish` as a callback when http activities is finish (Can be success/error)
 ```dart
 HttpInterceptor get httpClient {
@@ -91,7 +83,7 @@ HttpInterceptor get httpClient {
 await httpClient.post(url, body: {'name': 'doodle', 'color': 'blue'});
 ```
 
-# Acessing the UI
+## Acessing the UI
 We can use regular `Navigator.push`, we decide to use `MaterialPageRoute` instead of named route to avoid tightly coupled.
 ```dart
 /// Use this on floating button / notification handler.
@@ -105,7 +97,7 @@ void goToActivityPage(BuildContext context){
 }
 ```
 
-# Entry point from notification tap action
+## Entry point from notification tap action
 If the entry point to http activity page is desired from notification tap action, create a class to store `GlobalKey<NavigatorState>` which we need to navigate to the http activity page, from anywhere add GlobalKey into the `MaterialApp` widget on the `navigatorKey` constructor. 
 ```dart
   @override
@@ -136,3 +128,8 @@ var context = NavigationService.navigatorKey.currentContext;
 /// Call the `goToActivityPage` method and Supply the context
 goToActivityPage(context);
 ```
+
+## Credits
+This package is a fork of [network_inspector](https://pub.dev/packages/network_inspector).
+
+It has been simplified to remove Dio support and is maintained as optimus_network_inspector by Gtech Digital.

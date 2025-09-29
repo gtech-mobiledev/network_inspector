@@ -1,7 +1,7 @@
-name: network_inspector
-description: Http inspector / logger for Dio and Http package. This package would allow you to log every Http request, response, and error from Dio & Http.
-version: 1.2.1+3
-homepage: https://github.com/Meruya-Techhnology/network_inspector
+name: optimus_network_inspector
+description: Http inspector / logger for Http package. This package would allow you to log every Http request, response, and error from Http.
+version: 1.0.0
+homepage: https://gtech.digital
 
 environment:
   sdk: '>=3.1.5 <4.0.0'
@@ -10,13 +10,13 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  http: 
-  sqflite: 
-  provider: 
-  intl: 
-  analyzer: 
-  collection: 
-  share_plus: 
+  http: ^1.5.0
+  sqflite: ^2.4.2
+  provider: ^6.1.5+1
+  intl: ^0.20.2
+  analyzer: ^8.2.0
+  collection: ^1.19.1
+  share_plus: ^11.1.0
 
 dev_dependencies:
   flutter_lints: 

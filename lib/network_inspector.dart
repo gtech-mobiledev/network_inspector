@@ -1,4 +1,4 @@
-library network_inspector;
+library optimus_network_inspector;
 
 /// Import section
 import 'package:sqflite/sqflite.dart';
@@ -24,32 +24,6 @@ export 'presentation/pages/activity_page.dart';
 /// ```
 ///
 /// Then it's needed for invoked to network interceptors constructor
-/// Dio example
-///
-/// ```dart
-/// Dio(
-///   BaseOptions(
-///     baseUrl: 'http://192.168.1.6:8000/',
-///     connectTimeout: 10 * 1000, // 10 second
-///     headers: {
-///       'Content-type': 'application/json',
-///       'Accept': 'application/json',
-///       'Authorization': 'Bearer i109gh23j9u1h3811io2n391'
-///     },
-///   ),
-/// )..interceptors.add(
-///   DioInterceptor(
-///     logIsAllowed: true,
-///     networkInspector: networkInspector,
-///     onHttpFinish: (hashCode, title, message) {
-///       notifyActivity(
-///         title: title,
-///         message: message,
-///       );
-///     },
-///   ),
-/// )
-/// ```
 /// Http example
 /// ```dart
 /// HttpInterceptor(
