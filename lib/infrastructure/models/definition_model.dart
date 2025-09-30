@@ -4,11 +4,7 @@ class DefinitionModel {
   final String? type;
   final String? attribute;
 
-  DefinitionModel({
-    this.fields,
-    this.type,
-    this.attribute,
-  });
+  DefinitionModel({this.fields, this.type, this.attribute});
 
   factory DefinitionModel.fromJson(Map<String, dynamic> json) =>
       DefinitionModel(

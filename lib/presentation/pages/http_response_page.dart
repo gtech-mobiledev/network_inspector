@@ -11,10 +11,7 @@ import '../widgets/content_container.dart';
 /// from [ActivityDetailProvider] to display the error information
 class HttpResponsePage extends StatelessWidget {
   final HttpActivity httpActivity;
-  const HttpResponsePage({
-    required this.httpActivity,
-    super.key,
-  });
+  const HttpResponsePage({required this.httpActivity, super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -33,14 +30,14 @@ class HttpResponsePage extends StatelessWidget {
               title: 'Response Status',
               content: (response?.responseStatusCode != null)
                   ? '${response?.responseStatusCode} '
-                      '${response?.responseStatusMessage}'
+                        '${response?.responseStatusMessage}'
                   : null,
               isJson: false,
               onCopyTap: () {
                 provider.copyActivityData(
                   (response?.responseStatusCode != null)
                       ? '${response?.responseStatusCode} '
-                          '${response?.responseStatusMessage}'
+                            '${response?.responseStatusMessage}'
                       : NetworkInspectorValue.defaultEmptyString,
                 );
               },
@@ -49,7 +46,7 @@ class HttpResponsePage extends StatelessWidget {
                   'Response Status',
                   (response?.responseStatusCode != null)
                       ? '${response?.responseStatusCode} '
-                          '${response?.responseStatusMessage}'
+                            '${response?.responseStatusMessage}'
                       : NetworkInspectorValue.defaultEmptyString,
                 );
               },

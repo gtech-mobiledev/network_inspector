@@ -3,10 +3,7 @@ import 'package:flutter/material.dart';
 class BottomSheetTemplate extends StatelessWidget {
   final Widget child;
 
-  const BottomSheetTemplate({
-    super.key,
-    required this.child,
-  });
+  const BottomSheetTemplate({super.key, required this.child});
 
   @override
   Widget build(BuildContext context) {
@@ -25,16 +22,12 @@ class BottomSheetTemplate extends StatelessWidget {
             Align(
               alignment: Alignment.center,
               child: Padding(
-                padding: const EdgeInsets.symmetric(
-                  vertical: 21,
-                ),
+                padding: const EdgeInsets.symmetric(vertical: 21),
                 child: Container(
                   height: 4,
                   width: 70,
                   decoration: BoxDecoration(
-                    borderRadius: const BorderRadius.all(
-                      Radius.circular(12),
-                    ),
+                    borderRadius: const BorderRadius.all(Radius.circular(12)),
                     color: Colors.grey.withValues(alpha: 0.6),
                   ),
                 ),

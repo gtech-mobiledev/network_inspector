@@ -1,8 +1,5 @@
 class DateTimeUtil {
-  String milliSecondDifference(
-    int? startTime,
-    int? endTime,
-  ) {
+  String milliSecondDifference(int? startTime, int? endTime) {
     var start = (startTime != null)
         ? DateTime.fromMillisecondsSinceEpoch(startTime)
         : DateTime.now();

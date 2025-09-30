@@ -15,10 +15,7 @@ class DatabaseHelper {
       version: databaseVersion,
       onCreate: (Database db, int version) async {
         debugPrint('Database Created');
-        await initializeTable(
-          database: db,
-          version: version,
-        );
+        await initializeTable(database: db, version: version);
       },
       onConfigure: (Database db) {
         debugPrint('Configuring Database..');
@@ -66,11 +63,15 @@ class DatabaseHelper {
     var ddl = '''create table ${migrationObject.tableName} ($query)''';
 
     /// Execute ddl
-    await database.execute(ddl).then((_) {
-      debugPrint('DDL Executed DDL : $ddl');
-    }).onError((error, stackTrace) {
-      debugPrint('Error when execute DDL : ${stackTrace.toString()}');
-    }).whenComplete(() => close(database));
+    await database
+        .execute(ddl)
+        .then((_) {
+          debugPrint('DDL Executed DDL : $ddl');
+        })
+        .onError((error, stackTrace) {
+          debugPrint('Error when execute DDL : ${stackTrace.toString()}');
+        })
+        .whenComplete(() => close(database));
   }
 
   static Future<Database> connect() async {

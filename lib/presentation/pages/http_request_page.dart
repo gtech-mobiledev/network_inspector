@@ -11,10 +11,7 @@ import '../widgets/content_container.dart';
 /// [ActivityDetailProvider] to display the request information
 class HttpRequestPage extends StatelessWidget {
   final HttpActivity httpActivity;
-  const HttpRequestPage({
-    required this.httpActivity,
-    super.key,
-  });
+  const HttpRequestPage({required this.httpActivity, super.key});
 
   @override
   Widget build(BuildContext context) {

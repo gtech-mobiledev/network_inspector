@@ -27,13 +27,11 @@ class FilterBottomSheetContent extends StatelessWidget {
             children: [
               Text(
                 'Status Code',
-                style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                      fontWeight: FontWeight.bold,
-                    ),
+                style: Theme.of(
+                  context,
+                ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold),
               ),
-              const SizedBox(
-                height: 8,
-              ),
+              const SizedBox(height: 8),
               ChangeNotifierProvider.value(
                 value: provider,
                 builder: (context, child) {
@@ -44,8 +42,8 @@ class FilterBottomSheetContent extends StatelessWidget {
                         physics: const NeverScrollableScrollPhysics(),
                         itemBuilder: (context, index) {
                           final key = responseStatusCodes.keys.elementAt(index);
-                          final isChecked =
-                              provider.selectedStatusCodes.contains(key);
+                          final isChecked = provider.selectedStatusCodes
+                              .contains(key);
                           return CheckboxListTile(
                             value: isChecked,
                             controlAffinity: ListTileControlAffinity.leading,
@@ -58,13 +56,11 @@ class FilterBottomSheetContent extends StatelessWidget {
                                   ),
                                   textColor: Colors.white,
                                 ),
-                                const SizedBox(
-                                  width: 8,
-                                ),
+                                const SizedBox(width: 8),
                                 Text(
                                   '(${responseStatusCodes[key]})',
                                   style: Theme.of(context).textTheme.bodySmall,
-                                )
+                                ),
                               ],
                             ),
                             onChanged: (isChecked) {
@@ -73,16 +69,14 @@ class FilterBottomSheetContent extends StatelessWidget {
                           );
                         },
                         separatorBuilder: (context, index) {
-                          return const SizedBox(
-                            height: 4,
-                          );
+                          return const SizedBox(height: 4);
                         },
                         itemCount: responseStatusCodes.length,
                       );
                     },
                   );
                 },
-              )
+              ),
             ],
           ),
         ),
@@ -92,9 +86,9 @@ class FilterBottomSheetContent extends StatelessWidget {
             child: Text(
               'Apply Filter',
               style: Theme.of(context).textTheme.labelLarge?.copyWith(
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white,
-                  ),
+                fontWeight: FontWeight.bold,
+                color: Colors.white,
+              ),
             ),
             onPressed: () {
               onTapApplyFilter(provider.selectedStatusCodes);

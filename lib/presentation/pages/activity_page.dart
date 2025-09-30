@@ -34,9 +34,7 @@ class ActivityPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider<ActivityProvider>(
-      create: (context) => ActivityProvider(
-        context: context,
-      ),
+      create: (context) => ActivityProvider(context: context),
       builder: (context, child) => Scaffold(
         appBar: AppBar(
           title: const Text('Http Activities'),
@@ -45,18 +43,14 @@ class ActivityPage extends StatelessWidget {
               onPressed: () {
                 onTapFilterIcon(context);
               },
-              icon: const Icon(
-                Icons.filter_list_alt,
-              ),
+              icon: const Icon(Icons.filter_list_alt),
             ),
             IconButton(
               onPressed: () {
                 final provider = context.read<ActivityProvider>();
                 provider.deleteActivities();
               },
-              icon: const Icon(
-                Icons.delete,
-              ),
+              icon: const Icon(Icons.delete),
             ),
           ],
         ),
@@ -76,10 +70,7 @@ class ActivityPage extends StatelessWidget {
               case Status.loading:
                 return loadingWidget(context);
               case Status.success:
-                return successBody(
-                  context,
-                  result.data,
-                );
+                return successBody(context, result.data);
               case Status.error:
                 return errorMessage(context, result.message);
               default:
@@ -91,10 +82,7 @@ class ActivityPage extends StatelessWidget {
     );
   }
 
-  Widget successBody(
-    BuildContext context,
-    List<HttpActivity>? data,
-  ) {
+  Widget successBody(BuildContext context, List<HttpActivity>? data) {
     return Visibility(
       visible: data?.isNotEmpty ?? false,
       replacement: emptyBody(context),
@@ -121,40 +109,25 @@ class ActivityPage extends StatelessWidget {
   }
 
   Widget loadingWidget(BuildContext context) {
-    return const Center(
-      child: CircularProgressIndicator(),
-    );
+    return const Center(child: CircularProgressIndicator());
   }
 
   Widget idleWidget(BuildContext context) {
     return Center(
-      child: Text(
-        'Please wait',
-        style: Theme.of(context).textTheme.bodyLarge,
-      ),
+      child: Text('Please wait', style: Theme.of(context).textTheme.bodyLarge),
     );
   }
 
-  Widget activityList(
-    BuildContext context,
-    List<HttpActivity>? data,
-  ) {
+  Widget activityList(BuildContext context, List<HttpActivity>? data) {
     return ListView.separated(
       itemCount: data?.length ?? 0,
       separatorBuilder: (context, index) => const Divider(),
-      itemBuilder: (context, index) => activityTile(
-        context,
-        data![index],
-        index,
-      ),
+      itemBuilder: (context, index) =>
+          activityTile(context, data![index], index),
     );
   }
 
-  Widget activityTile(
-    BuildContext context,
-    HttpActivity activity,
-    int index,
-  ) {
+  Widget activityTile(BuildContext context, HttpActivity activity, int index) {
     return ListTile(
       onTap: () {
         var provider = context.read<ActivityProvider>();
@@ -193,11 +166,7 @@ class ActivityPage extends StatelessWidget {
                   size: 18,
                   color: Colors.grey,
                 ),
-                child: const Icon(
-                  Icons.lock,
-                  size: 18,
-                  color: Colors.green,
-                ),
+                child: const Icon(Icons.lock, size: 18, color: Colors.green),
               ),
               const SizedBox(width: 4),
               Expanded(
@@ -207,7 +176,7 @@ class ActivityPage extends StatelessWidget {
                   overflow: TextOverflow.ellipsis,
                   style: Theme.of(context).textTheme.bodyMedium,
                 ),
-              )
+              ),
             ],
           ),
           const SizedBox(height: 4),
@@ -247,9 +216,7 @@ class ActivityPage extends StatelessWidget {
       builder: (context) {
         return BottomSheetTemplate(
           child: Padding(
-            padding: const EdgeInsets.symmetric(
-              horizontal: 16,
-            ),
+            padding: const EdgeInsets.symmetric(horizontal: 16),
             child: FilterBottomSheetContent(
               responseStatusCodes: provider.statusCodes,
               onTapApplyFilter: (list) {

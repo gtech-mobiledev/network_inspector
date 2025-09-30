@@ -11,21 +11,13 @@ abstract class LogRepository {
     String? url,
   });
 
-  Future<List<HttpRequest>?> httpRequests({
-    int? requestHashCode,
-  });
+  Future<List<HttpRequest>?> httpRequests({int? requestHashCode});
 
-  Future<List<HttpResponse>?> httpResponses({
-    int? requestHashCode,
-  });
+  Future<List<HttpResponse>?> httpResponses({int? requestHashCode});
 
-  Future<bool> logHttpRequest({
-    required HttpRequest httpRequestModel,
-  });
+  Future<bool> logHttpRequest({required HttpRequest httpRequestModel});
 
-  Future<bool> logHttpResponse({
-    required HttpResponse httpResponseModel,
-  });
+  Future<bool> logHttpResponse({required HttpResponse httpResponseModel});
 
   Future<bool> deleteHttpActivities();
 }

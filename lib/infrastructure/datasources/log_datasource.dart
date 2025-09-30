@@ -10,21 +10,13 @@ abstract class LogDatasource {
     String? url,
   });
 
-  Future<List<HttpRequestModel>?> httpRequests({
-    int? requestHashCode,
-  });
+  Future<List<HttpRequestModel>?> httpRequests({int? requestHashCode});
 
-  Future<List<HttpResponseModel>?> httpResponses({
-    int? requestHashCode,
-  });
+  Future<List<HttpResponseModel>?> httpResponses({int? requestHashCode});
 
-  Future<bool> logHttpRequest({
-    required HttpRequestModel httpRequestModel,
-  });
+  Future<bool> logHttpRequest({required HttpRequestModel httpRequestModel});
 
-  Future<bool> logHttpResponse({
-    required HttpResponseModel httpResponseModel,
-  });
+  Future<bool> logHttpResponse({required HttpResponseModel httpResponseModel});
 
   Future<bool> deleteHttpActivities();
 }

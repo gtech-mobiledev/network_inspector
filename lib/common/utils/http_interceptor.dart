@@ -17,11 +17,8 @@ class HttpInterceptor extends BaseClient {
   final Map<String, String>? headers;
   final Client client;
   final NetworkInspector? networkInspector;
-  final Function(
-    int requestHashCode,
-    String title,
-    String message,
-  )? onHttpFinish;
+  final Function(int requestHashCode, String title, String message)?
+  onHttpFinish;
   final bool logIsAllowed;
 
   HttpInterceptor({
@@ -38,17 +35,11 @@ class HttpInterceptor extends BaseClient {
   final _byteUtil = ByteUtil();
 
   @override
-  Future<Response> head(
-    Uri url, {
-    Map<String, String>? headers,
-  }) =>
+  Future<Response> head(Uri url, {Map<String, String>? headers}) =>
       _sendUnstreamed('HEAD', url, headers);
 
   @override
-  Future<Response> get(
-    Uri url, {
-    Map<String, String>? headers,
-  }) =>
+  Future<Response> get(Uri url, {Map<String, String>? headers}) =>
       _sendUnstreamed('GET', url, headers);
 
   @override
@@ -57,8 +48,7 @@ class HttpInterceptor extends BaseClient {
     Map<String, String>? headers,
     Object? body,
     Encoding? encoding,
-  }) =>
-      _sendUnstreamed('POST', url, headers, body, encoding);
+  }) => _sendUnstreamed('POST', url, headers, body, encoding);
 
   @override
   Future<Response> put(
@@ -66,8 +56,7 @@ class HttpInterceptor extends BaseClient {
     Map<String, String>? headers,
     Object? body,
     Encoding? encoding,
-  }) =>
-      _sendUnstreamed('PUT', url, headers, body, encoding);
+  }) => _sendUnstreamed('PUT', url, headers, body, encoding);
 
   @override
   Future<Response> patch(
@@ -75,8 +64,7 @@ class HttpInterceptor extends BaseClient {
     Map<String, String>? headers,
     Object? body,
     Encoding? encoding,
-  }) =>
-      _sendUnstreamed('PATCH', url, headers, body, encoding);
+  }) => _sendUnstreamed('PATCH', url, headers, body, encoding);
 
   @override
   Future<Response> delete(
@@ -84,31 +72,18 @@ class HttpInterceptor extends BaseClient {
     Map<String, String>? headers,
     Object? body,
     Encoding? encoding,
-  }) =>
-      _sendUnstreamed('DELETE', url, headers, body, encoding);
+  }) => _sendUnstreamed('DELETE', url, headers, body, encoding);
 
   @override
-  Future<String> read(
-    Uri url, {
-    Map<String, String>? headers,
-  }) async {
-    final response = await get(
-      url,
-      headers: headers,
-    );
+  Future<String> read(Uri url, {Map<String, String>? headers}) async {
+    final response = await get(url, headers: headers);
     _checkResponseSuccess(url, response);
     return response.body;
   }
 
   @override
-  Future<Uint8List> readBytes(
-    Uri url, {
-    Map<String, String>? headers,
-  }) async {
-    final response = await get(
-      url,
-      headers: headers,
-    );
+  Future<Uint8List> readBytes(Uri url, {Map<String, String>? headers}) async {
+    final response = await get(url, headers: headers);
     _checkResponseSuccess(url, response);
     return response.bodyBytes;
   }
@@ -139,9 +114,7 @@ class HttpInterceptor extends BaseClient {
       }
     }
     if (logIsAllowed) saveRequest(request);
-    final response = await Response.fromStream(
-      await send(request),
-    );
+    final response = await Response.fromStream(await send(request));
 
     /// Intercept area
     if (logIsAllowed) {
@@ -169,7 +142,8 @@ class HttpInterceptor extends BaseClient {
   Future<void> logRequest(Request request) async {
     var isNotGet = request.method != 'GET';
     var contentType = (isNotGet) ? request.headers['Content-Type'] : null;
-    var logTemplate = '\n[Request url] ${request.url.toString()}'
+    var logTemplate =
+        '\n[Request url] ${request.url.toString()}'
         '\n[Request header] ${request.headers.toString()}'
         '\n[Request param] ${request.url.queryParameters}'
         '\n[Request body] ${_jsonUtil.encodeRawJson(request.body)}'
@@ -179,16 +153,18 @@ class HttpInterceptor extends BaseClient {
   }
 
   Future<void> logResponse(Response response) async {
-    if (response.headers["content-type"]
-        .toString()
-        .contains('application/json')) {
-      var logTemplate = '\n[Response header] ${response.headers.toString()}'
+    if (response.headers["content-type"].toString().contains(
+      'application/json',
+    )) {
+      var logTemplate =
+          '\n[Response header] ${response.headers.toString()}'
           '\n[Response body] ${_jsonUtil.encodeRawJson(response.body)}'
           '\n[Response code] ${response.statusCode}'
           '\n[Response message] ${response.reasonPhrase}';
       developer.log(logTemplate);
     } else {
-      var logTemplate = '\n[Response header] ${response.headers.toString()}'
+      var logTemplate =
+          '\n[Response header] ${response.headers.toString()}'
           '\n[Response body] ${response.bodyBytes.toString()}'
           '\n[Response code] ${response.statusCode}'
           '\n[Response message] ${response.reasonPhrase}';
@@ -213,9 +189,9 @@ class HttpInterceptor extends BaseClient {
   }
 
   Future<void> saveResponse(Response response, int requestHashCode) async {
-    if (response.headers["content-type"]
-        .toString()
-        .contains('application/json')) {
+    if (response.headers["content-type"].toString().contains(
+      'application/json',
+    )) {
       var payload = HttpResponse(
         createdAt: DateTime.now().millisecondsSinceEpoch,
         responseHeader: _jsonUtil.encodeRawJson(response.headers).toString(),

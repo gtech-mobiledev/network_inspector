@@ -22,12 +22,12 @@ class NetworkInspectorValue {
   }
 
   static Map<HttpActivityActionType, String> get actionSuccessMessage => {
-        HttpActivityActionType.copy: 'Json copied successfully',
-        HttpActivityActionType.share: 'Json shared successfully',
-      };
+    HttpActivityActionType.copy: 'Json copied successfully',
+    HttpActivityActionType.share: 'Json shared successfully',
+  };
 
   static Map<HttpActivityActionType, String> get actionFailedMessage => {
-        HttpActivityActionType.copy: 'Failed to copy json',
-        HttpActivityActionType.share: 'Failed to share json',
-      };
+    HttpActivityActionType.copy: 'Failed to copy json',
+    HttpActivityActionType.share: 'Failed to share json',
+  };
 }

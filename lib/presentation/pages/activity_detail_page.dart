@@ -15,18 +15,13 @@ class ActivityDetailPage extends StatelessWidget {
   static const String routeName = '/http-activity-detail';
 
   final HttpActivity httpActivity;
-  const ActivityDetailPage({
-    required this.httpActivity,
-    super.key,
-  });
+  const ActivityDetailPage({required this.httpActivity, super.key});
 
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider<ActivityDetailProvider>(
-      create: (context) => ActivityDetailProvider(
-        httpActivity: httpActivity,
-        context: context,
-      ),
+      create: (context) =>
+          ActivityDetailProvider(httpActivity: httpActivity, context: context),
       builder: (context, child) {
         final provider = context.read<ActivityDetailProvider>();
         return Scaffold(
@@ -40,9 +35,7 @@ class ActivityDetailPage extends StatelessWidget {
                     HttpActivityActionType.share,
                   );
                 },
-                icon: const Icon(
-                  Icons.share,
-                ),
+                icon: const Icon(Icons.share),
               ),
               IconButton(
                 onPressed: () {
@@ -51,9 +44,7 @@ class ActivityDetailPage extends StatelessWidget {
                     HttpActivityActionType.copy,
                   );
                 },
-                icon: const Icon(
-                  Icons.copy,
-                ),
+                icon: const Icon(Icons.copy),
               ),
             ],
           ),
@@ -70,10 +61,7 @@ class ActivityDetailPage extends StatelessWidget {
         initialIndex: 0,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            bodyHeader(context),
-            bodyContent(context),
-          ],
+          children: [bodyHeader(context), bodyContent(context)],
         ),
       ),
     );
@@ -95,15 +83,9 @@ class ActivityDetailPage extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              TitledLabel(
-                title: 'Url',
-                text: httpActivity.request?.baseUrl,
-              ),
+              TitledLabel(title: 'Url', text: httpActivity.request?.baseUrl),
               const SizedBox(height: 8),
-              TitledLabel(
-                title: 'Path',
-                text: httpActivity.request?.path,
-              ),
+              TitledLabel(title: 'Path', text: httpActivity.request?.path),
             ],
           ),
         ),
@@ -142,15 +124,9 @@ class ActivityDetailPage extends StatelessWidget {
       child: Consumer<ActivityDetailProvider>(
         builder: (context, provider, child) => TabBarView(
           children: [
-            HttpRequestPage(
-              httpActivity: httpActivity,
-            ),
-            HttpResponsePage(
-              httpActivity: httpActivity,
-            ),
-            HttpErrorPage(
-              httpActivity: httpActivity,
-            ),
+            HttpRequestPage(httpActivity: httpActivity),
+            HttpResponsePage(httpActivity: httpActivity),
+            HttpErrorPage(httpActivity: httpActivity),
           ],
         ),
       ),

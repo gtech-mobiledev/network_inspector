@@ -13,15 +13,10 @@ import '../../domain/entities/http_activity.dart';
 class ActivityDetailProvider extends ChangeNotifier {
   final BuildContext context;
   final HttpActivity httpActivity;
-  ActivityDetailProvider({
-    required this.httpActivity,
-    required this.context,
-  });
+  ActivityDetailProvider({required this.httpActivity, required this.context});
 
   final _jsonUtil = JsonUtil();
-  final pageViewController = PageController(
-    initialPage: 0,
-  );
+  final pageViewController = PageController(initialPage: 0);
 
   var _currentPage = 0;
 
@@ -39,10 +34,12 @@ class ActivityDetailProvider extends ChangeNotifier {
   }
 
   Future<void> shareHttpActivity(String content) async {
-    SharePlus.instance.share(ShareParams(
-      text: content,
-      subject: 'Http Activity ${httpActivity.request?.path}',
-    ));
+    SharePlus.instance.share(
+      ShareParams(
+        text: content,
+        subject: 'Http Activity ${httpActivity.request?.path}',
+      ),
+    );
   }
 
   Future<void> copyActivityData(String content) async {
@@ -53,38 +50,44 @@ class ActivityDetailProvider extends ChangeNotifier {
   }
 
   Future<void> shareActivityData(String title, String content) async {
-    SharePlus.instance.share(ShareParams(
-      text: content,
-      subject: '$title : ${httpActivity.request?.path}',
-    ));
+    SharePlus.instance.share(
+      ShareParams(
+        text: content,
+        subject: '$title : ${httpActivity.request?.path}',
+      ),
+    );
   }
 
   Future<void> buildJson(
     Function(String content) action,
     HttpActivityActionType actionType,
   ) async {
-    _jsonUtil.buildActivityJson(httpActivity).then((result) {
-      if (result != null) {
-        action(result);
-      } else {
-        showSnackBar(
-          NetworkInspectorValue.actionFailedMessage[actionType]!,
+    _jsonUtil
+        .buildActivityJson(httpActivity)
+        .then(
+          (result) {
+            if (result != null) {
+              action(result);
+            } else {
+              showSnackBar(
+                NetworkInspectorValue.actionFailedMessage[actionType]!,
+              );
+            }
+          },
+          onError: (e) {
+            showSnackBar(
+              '${NetworkInspectorValue.actionFailedMessage[actionType]!}'
+              '${e.toString()}',
+            );
+          },
         );
-      }
-    }, onError: (e) {
-      showSnackBar('${NetworkInspectorValue.actionFailedMessage[actionType]!}'
-          '${e.toString()}');
-    });
   }
 
   Future<void> showSnackBar(String message) async {
     final snackBar = SnackBar(
       content: Text(message),
       behavior: SnackBarBehavior.floating,
-      action: SnackBarAction(
-        label: 'Close',
-        onPressed: () {},
-      ),
+      action: SnackBarAction(label: 'Close', onPressed: () {}),
     );
     ScaffoldMessenger.of(context).showSnackBar(snackBar);
   }

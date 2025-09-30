@@ -6,15 +6,11 @@ import '../repositories/log_repository.dart';
 /// @nodoc
 class LogHttpRequest extends UseCase<bool, HttpRequest> {
   final LogRepository logRepository;
-  LogHttpRequest({
-    required this.logRepository,
-  });
+  LogHttpRequest({required this.logRepository});
 
   @override
   Future<bool> build(HttpRequest param) async {
-    var result = await logRepository.logHttpRequest(
-      httpRequestModel: param,
-    );
+    var result = await logRepository.logHttpRequest(httpRequestModel: param);
     return result;
   }
 

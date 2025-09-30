@@ -10,16 +10,11 @@ import '../widgets/content_container.dart';
 /// [ActivityDetailProvider] to display the error information
 class HttpErrorPage extends StatelessWidget {
   final HttpActivity httpActivity;
-  const HttpErrorPage({
-    required this.httpActivity,
-    super.key,
-  });
+  const HttpErrorPage({required this.httpActivity, super.key});
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: errorContent(context),
-    );
+    return SingleChildScrollView(child: errorContent(context));
   }
 
   Widget errorContent(BuildContext context) {

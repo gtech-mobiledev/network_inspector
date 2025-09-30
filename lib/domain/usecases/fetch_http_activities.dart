@@ -9,9 +9,7 @@ class FetchHttpActivities
     extends UseCase<List<HttpActivity>?, FetchHttpActivitiesParam?> {
   final LogRepository logRepository;
 
-  FetchHttpActivities({
-    required this.logRepository,
-  });
+  FetchHttpActivities({required this.logRepository});
 
   @override
   Future<List<HttpActivity>?> build(FetchHttpActivitiesParam? param) async {

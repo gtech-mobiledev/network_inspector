@@ -17,9 +17,7 @@ import 'activity_filter_provider.dart';
 class ActivityProvider extends ChangeNotifier {
   final BuildContext context;
 
-  ActivityProvider({
-    required this.context,
-  }) {
+  ActivityProvider({required this.context}) {
     injectDependencies().whenComplete(() {
       initState();
     });
@@ -39,15 +37,11 @@ class ActivityProvider extends ChangeNotifier {
   Future<void> injectDependencies() async {
     _database = await DatabaseHelper.initialize();
     if (_database != null) {
-      LogDatasource logDatasource = LogDatasourceImpl(
-        database: _database!,
-      );
+      LogDatasource logDatasource = LogDatasourceImpl(database: _database!);
       LogRepository logRepository = LogRepositoryImpl(
         logDatasource: logDatasource,
       );
-      _fetchHttpActivities = FetchHttpActivities(
-        logRepository: logRepository,
-      );
+      _fetchHttpActivities = FetchHttpActivities(logRepository: logRepository);
       filterProvider = ActivityFilterProvider();
     }
   }
@@ -60,24 +54,21 @@ class ActivityProvider extends ChangeNotifier {
     fetchActivities(statusCodes: filterList);
   }
 
-  Future<void> fetchActivities({
-    List<int?>? statusCodes,
-  }) async {
+  Future<void> fetchActivities({List<int?>? statusCodes}) async {
     try {
       fetchedActivity = DataWrapper.loading();
-      final result = await _fetchHttpActivities?.execute(statusCodes != null
-              ? FetchHttpActivitiesParam(
-                  statusCodes: statusCodes,
-                )
-              : null) ??
+      final result =
+          await _fetchHttpActivities?.execute(
+            statusCodes != null
+                ? FetchHttpActivitiesParam(statusCodes: statusCodes)
+                : null,
+          ) ??
           [];
       fetchedActivity = DataWrapper.success(result);
       retrieveResponseStatusCodeListFilter(result);
       notifyListeners();
     } catch (error) {
-      fetchedActivity = DataWrapper.error(
-        message: error.toString(),
-      );
+      fetchedActivity = DataWrapper.error(message: error.toString());
     }
   }
 
@@ -99,9 +90,7 @@ class ActivityProvider extends ChangeNotifier {
     await Navigator.push(
       context,
       MaterialPageRoute<void>(
-        builder: (context) => ActivityDetailPage(
-          httpActivity: httpActivity,
-        ),
+        builder: (context) => ActivityDetailPage(httpActivity: httpActivity),
       ),
     );
   }

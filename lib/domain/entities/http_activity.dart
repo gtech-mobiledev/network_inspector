@@ -6,8 +6,5 @@ class HttpActivity {
   final HttpRequest? request;
   final HttpResponse? response;
 
-  HttpActivity({
-    this.request,
-    this.response,
-  });
+  HttpActivity({this.request, this.response});
 }

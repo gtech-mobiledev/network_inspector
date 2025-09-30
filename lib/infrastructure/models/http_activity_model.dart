@@ -6,8 +6,5 @@ class HttpActivityModel {
   final HttpRequestModel? request;
   final HttpResponseModel? response;
 
-  HttpActivityModel({
-    this.request,
-    this.response,
-  });
+  HttpActivityModel({this.request, this.response});
 }

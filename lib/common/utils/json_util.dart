@@ -54,9 +54,7 @@ class JsonUtil {
     }
   }
 
-  Future<String?> buildActivityJson(
-    HttpActivity httpActivity,
-  ) async {
+  Future<String?> buildActivityJson(HttpActivity httpActivity) async {
     final request = httpActivity.request;
     final response = httpActivity.response;
     var jsonOutput = {
@@ -76,7 +74,7 @@ class JsonUtil {
         'request_headers': tryDecodeRawJson(request?.requestHeader),
         'request_body': tryDecodeRawJson(request?.requestBody),
         'request_size': request?.requestSize,
-        'created_at': request?.createdAt
+        'created_at': request?.createdAt,
       },
       'response_data': {
         'response_headers': tryDecodeRawJson(response?.responseHeader),

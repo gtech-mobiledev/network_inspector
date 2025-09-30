@@ -6,15 +6,11 @@ import '../repositories/log_repository.dart';
 /// @nodoc
 class FetchHttpResponses extends UseCase<List<HttpResponse>?, int> {
   final LogRepository logRepository;
-  FetchHttpResponses({
-    required this.logRepository,
-  });
+  FetchHttpResponses({required this.logRepository});
 
   @override
   Future<List<HttpResponse>?> build(int param) async {
-    var result = await logRepository.httpResponses(
-      requestHashCode: param,
-    );
+    var result = await logRepository.httpResponses(requestHashCode: param);
     return result;
   }
 

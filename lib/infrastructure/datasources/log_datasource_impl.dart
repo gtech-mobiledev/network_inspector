@@ -10,9 +10,7 @@ import 'log_datasource.dart';
 class LogDatasourceImpl implements LogDatasource {
   final Database database;
 
-  LogDatasourceImpl({
-    required this.database,
-  });
+  LogDatasourceImpl({required this.database});
 
   @override
   Future<bool> logHttpRequest({
@@ -37,35 +35,27 @@ class LogDatasourceImpl implements LogDatasource {
   }
 
   @override
-  Future<List<HttpRequestModel>?> httpRequests({
-    int? requestHashCode,
-  }) async {
+  Future<List<HttpRequestModel>?> httpRequests({int? requestHashCode}) async {
     List<Map<String, Object?>> rows = await database.query(
       HttpRequestModel.tableName,
       where: 'request_hash_code = ?',
       whereArgs: [requestHashCode],
     );
     var models = List<HttpRequestModel>.from(
-      rows.map(
-        (row) => HttpRequestModel.fromJson(row),
-      ),
+      rows.map((row) => HttpRequestModel.fromJson(row)),
     );
     return models;
   }
 
   @override
-  Future<List<HttpResponseModel>?> httpResponses({
-    int? requestHashCode,
-  }) async {
+  Future<List<HttpResponseModel>?> httpResponses({int? requestHashCode}) async {
     List<Map<String, Object?>> rows = await database.query(
       HttpResponseModel.tableName,
       where: 'request_hash_code = ?',
       whereArgs: [requestHashCode],
     );
     var models = List<HttpResponseModel>.from(
-      rows.map(
-        (row) => HttpResponseModel.fromJson(row),
-      ),
+      rows.map((row) => HttpResponseModel.fromJson(row)),
     );
     return models;
   }
@@ -83,7 +73,8 @@ class LogDatasourceImpl implements LogDatasource {
     final queryArgs = [];
     if (filteredByDate) {
       queryArgs.addAll([startDate, endDate]);
-      query += "created_at >=  datetime(? / 1000, 'unixepoch')"
+      query +=
+          "created_at >=  datetime(? / 1000, 'unixepoch')"
           "and created_at <= datetime(? / 1000, 'unixepoch')";
     }
     if (url != null) {
@@ -101,9 +92,7 @@ class LogDatasourceImpl implements LogDatasource {
       orderBy: 'created_at DESC',
     );
     final requestModels = List<HttpRequestModel>.from(
-      requestRows.map(
-        (row) => HttpRequestModel.fromJson(row),
-      ),
+      requestRows.map((row) => HttpRequestModel.fromJson(row)),
     );
     final requestIds = requestModels
         .map((requestModel) => requestModel.requestHashCode)
@@ -111,7 +100,8 @@ class LogDatasourceImpl implements LogDatasource {
 
     String responseQuery = 'request_hash_code in (${requestIds.join(', ')})';
     if (statusCodes != null && statusCodes.isNotEmpty) {
-      responseQuery = '$responseQuery and '
+      responseQuery =
+          '$responseQuery and '
           'response_status_code in (${statusCodes.join(', ')})';
     }
 
@@ -120,9 +110,7 @@ class LogDatasourceImpl implements LogDatasource {
       where: responseQuery,
     );
     final responseModels = List<HttpResponseModel>.from(
-      responseRows.map(
-        (row) => HttpResponseModel.fromJson(row),
-      ),
+      responseRows.map((row) => HttpResponseModel.fromJson(row)),
     );
 
     final activities = (responseModels.isNotEmpty)
@@ -132,7 +120,8 @@ class LogDatasourceImpl implements LogDatasource {
                   (requestModel) => HttpActivityModel(
                     request: requestModel,
                     response: responseModels.singleWhereOrNull(
-                      (responseModel) => (responseModel.requestHashCode ==
+                      (responseModel) =>
+                          (responseModel.requestHashCode ==
                           requestModel.requestHashCode),
                     ),
                   ),
@@ -145,9 +134,7 @@ class LogDatasourceImpl implements LogDatasource {
 
   @override
   Future<bool> deleteHttpActivities() async {
-    var id = await database.delete(
-      HttpRequestModel.tableName,
-    );
+    var id = await database.delete(HttpRequestModel.tableName);
     return (id != 0);
   }
 }

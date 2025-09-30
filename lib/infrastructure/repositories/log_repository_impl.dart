@@ -11,9 +11,7 @@ import '../mappers/http_response_mapper.dart';
 class LogRepositoryImpl implements LogRepository {
   final LogDatasource logDatasource;
 
-  LogRepositoryImpl({
-    required this.logDatasource,
-  });
+  LogRepositoryImpl({required this.logDatasource});
 
   @override
   Future<List<HttpActivity>?> httpActivities({
@@ -30,62 +28,42 @@ class LogRepositoryImpl implements LogRepository {
     );
     var entities = (models != null)
         ? List<HttpActivity>.from(
-            models.map(
-              (model) => HttpActivityMapper.toEntity(
-                model,
-              ),
-            ),
+            models.map((model) => HttpActivityMapper.toEntity(model)),
           )
         : null;
     return entities;
   }
 
   @override
-  Future<List<HttpRequest>?> httpRequests({
-    int? requestHashCode,
-  }) async {
+  Future<List<HttpRequest>?> httpRequests({int? requestHashCode}) async {
     var models = await logDatasource.httpRequests(
       requestHashCode: requestHashCode,
     );
     var entities = (models != null)
         ? List<HttpRequest>.from(
-            models.map(
-              (model) => HttpRequestMapper.toEntity(
-                model,
-              ),
-            ),
+            models.map((model) => HttpRequestMapper.toEntity(model)),
           )
         : null;
     return entities;
   }
 
   @override
-  Future<List<HttpResponse>?> httpResponses({
-    int? requestHashCode,
-  }) async {
+  Future<List<HttpResponse>?> httpResponses({int? requestHashCode}) async {
     var models = await logDatasource.httpResponses(
       requestHashCode: requestHashCode,
     );
     var entities = (models != null)
         ? List<HttpResponse>.from(
-            models.map(
-              (model) => HttpResponseMapper.toEntity(
-                model,
-              ),
-            ),
+            models.map((model) => HttpResponseMapper.toEntity(model)),
           )
         : null;
     return entities;
   }
 
   @override
-  Future<bool> logHttpRequest({
-    required HttpRequest httpRequestModel,
-  }) async {
+  Future<bool> logHttpRequest({required HttpRequest httpRequestModel}) async {
     var model = HttpRequestMapper.toModel(httpRequestModel);
-    var result = await logDatasource.logHttpRequest(
-      httpRequestModel: model,
-    );
+    var result = await logDatasource.logHttpRequest(httpRequestModel: model);
     return result;
   }
 
@@ -94,9 +72,7 @@ class LogRepositoryImpl implements LogRepository {
     required HttpResponse httpResponseModel,
   }) async {
     var model = HttpResponseMapper.toModel(httpResponseModel);
-    var result = await logDatasource.logHttpResponse(
-      httpResponseModel: model,
-    );
+    var result = await logDatasource.logHttpResponse(httpResponseModel: model);
     return result;
   }
 

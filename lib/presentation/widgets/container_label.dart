@@ -14,18 +14,16 @@ class ContainerLabel extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(
-        horizontal: 8,
-        vertical: 4,
-      ),
+      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(8),
         color: color,
       ),
       child: Text(
         text ?? 'N/A',
-        style:
-            Theme.of(context).textTheme.bodySmall?.copyWith(color: textColor),
+        style: Theme.of(
+          context,
+        ).textTheme.bodySmall?.copyWith(color: textColor),
       ),
     );
   }
