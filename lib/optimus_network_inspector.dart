@@ -1,3 +1,4 @@
+/// This is a library that provides network inspection capabilities for logging
 library optimus_network_inspector;
 
 /// Import section
