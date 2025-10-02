@@ -1,3 +1,6 @@
+## 1.0.3
+* upgrade share_plus library
+
 ## 1.0.2
 * remove unused dependency
 
